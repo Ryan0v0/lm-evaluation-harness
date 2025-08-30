@@ -1,8 +1,8 @@
 dataset_path: deep-principle/science_physics
 dataset_name: multiple_choice
-test_split: test  # Dataset has 75 rows, 72 with valid Task, 3 missing Task
+test_split: test  # Dataset has 129 examples with valid Task fields
 
-# Process ALL documents to avoid losing the 3 examples with missing Task
+# Process ALL documents to ensure we get all examples
 process_docs: !function utils.process_all_docs
 doc_to_text: >
   You are an expert in physics. The following are multiple choice questions about physics.
@@ -23,7 +23,7 @@ filter_list:
         group_select: 0
         fallback: "[invalid]"
 generation_kwargs:
-  max_tokens: 4096  # Restored for OpenAI API compatibility
+  max_new_tokens: 4096  # Updated for newer transformers versions
   until:
     - "</s>"
     - "<|im_end|>"

@@ -1,8 +1,8 @@
 dataset_path: deep-principle/science_physics
 dataset_name: exact_match
-test_split: test
+test_split: test  # Dataset has 34 examples with valid Task fields
 
-# Process ALL documents, not just specific tasks (82/99 examples have None tasks)
+# Process ALL documents to ensure we get all examples
 process_docs: !function utils.process_all_docs
 doc_to_text: >
   You are an expert in physics and mathematics. Please solve the following question step by step.
@@ -22,7 +22,7 @@ filter_list:
       - function: "custom"
         filter_fn: !function utils.extract_math_answers
 generation_kwargs:
-  max_tokens: 4096  # Restored for OpenAI API compatibility
+  max_new_tokens: 4096  # Updated for newer transformers versions
   until:
     - "</s>"
     - "<|im_end|>"

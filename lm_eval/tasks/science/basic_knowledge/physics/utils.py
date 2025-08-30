@@ -8,19 +8,19 @@ def process_all_docs(dataset):
     """Process all documents without filtering - for datasets with missing Task fields"""
     return dataset
 
-# Process functions for tasks that actually exist in the deep-principle/science_physics dataset
-# Based on inspection of exact_match and multiple_choice subsets
+# Updated process functions based on new dataset structure (34 exact_match + 129 multiple_choice)
 
-# Tasks in both exact_match and multiple_choice subsets:
-process_astrophysics_cosmology = partial(process_docs, task="Astrophysics/Cosmology")  # ✅ Available in both subsets
-process_quantum_information = partial(process_docs, task="Quantum Information")  # ✅ Available in both subsets
-process_condensed_matter_physics = partial(process_docs, task="Condensed Matter Physics") 
-process_probability_statistics = partial(process_docs, task="Probability/Statistics")
+# Tasks available in exact_match subset (34 examples):
+process_astrophysics_cosmology = partial(process_docs, task="Astrophysics/Cosmology")  # ✅ 8 examples
+process_quantum_information = partial(process_docs, task="Quantum Information")  # ✅ 14 examples
+process_condensed_matter_physics = partial(process_docs, task="Condensed Matter Physics")  # ✅ 5 examples
+process_probability_statistics = partial(process_docs, task="Probability/Statistics")  # ✅ 5 examples
+process_mathematical_physics = partial(process_docs, task="Mathematical Physics")  # ✅ 2 examples
 
-# Tasks only in multiple_choice subset:
-process_computational_physics = partial(process_docs, task="Computational Physics")  # ✅ Available in multiple_choice
-process_core_knowledge = partial(process_docs, task="Core Knowledge")  # ✅ Available in multiple_choice
-process_high_energy_physics = partial(process_docs, task="High-energy Physics")  # ✅ Available in multiple_choice
+# Tasks available in multiple_choice subset (129 examples):
+process_computational_physics = partial(process_docs, task="Computational Physics")  # ✅ 21 examples
+process_high_energy_physics = partial(process_docs, task="High-energy Physics")  # ✅ 20 examples
+process_core_knowledge = partial(process_docs, task="Core Knowledge")  # ✅ 7 examples
 
 def extract_math_answers(resps, docs):
     """Direct Math-Verify answer extraction using native parse() with preprocessing"""

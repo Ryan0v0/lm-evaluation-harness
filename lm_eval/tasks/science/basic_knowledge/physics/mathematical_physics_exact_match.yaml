@@ -1,0 +1,14 @@
+include: "_default_exact_match_yaml"
+# Uses specific task filtering: 2 examples
+process_docs: !function utils.process_mathematical_physics
+doc_to_text: >
+  You are an expert in Mathematical Physics. Please solve the following mathematical physics question step by step.
+  
+  Question: {{Question.strip()}}
+  
+  Provide your reasoning first, then conclude with your final answer. 
+  IMPORTANT: You MUST put your final mathematical answer inside <Math> tags like this: <Math>your mathematical expression</Math>
+  Do not use any other format for your final answer.
+  
+  Answer:
+task: exact_match_mathematical_physics
